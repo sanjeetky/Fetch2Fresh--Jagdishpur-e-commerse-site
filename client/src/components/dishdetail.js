@@ -37,20 +37,37 @@ addtocart(Item)
            category:Item.category
        }
 
-       fetch('/cart',{
-           method:"POST",
-           headers:{"Content-Type":"application/json"},
-           body:JSON.stringify(item)
-       })
-       .then(res=>res.json())
-       .then(data=>{
-         console.log("dishdetail")
-         alert("submitted sucessfully");
-       })
-       .catch(err=>{
-         console.log(err)
-         console.log("error")
-        });
+       fetch('/cart/search',{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({username:this.props.user.username,itemid:Item.itemid})
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.length==0)
+     {
+      fetch('/cart',{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(item)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log("dishdetail")
+      alert("submitted sucessfully");
+    })
+    .catch(err=>{
+      console.log(err)
+      console.log("error")
+     });
+     }
+      else
+      alert("already added");
+    })
+    .catch(err=>{  console.log("error")})
+       
+
+      
    }
 }
 

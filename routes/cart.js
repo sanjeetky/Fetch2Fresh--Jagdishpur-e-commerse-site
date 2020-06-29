@@ -8,6 +8,8 @@ router.route('/')
      var quantity=1;
 
      //cheking for unique property
+    
+
          Cart.create({
           username:req.body.username,
           name:req.body.name,
@@ -46,6 +48,18 @@ router.post('/display',(req,res)=>{
        res.json(item)
      },err=>console.log(err))
      .catch(err=>console.log(err));
+});
+
+router.post('/search',(req,res)=>{
+  var username=req.body.username;
+  var itemid=req.body.itemid;
+   Cart.find({username:username,itemid:itemid})
+   .then(item=>{
+     res.statusCode=200;
+     res.setHeader('Content-Type','application/json')
+     res.json(item)
+   },err=>console.log(err))
+   .catch(err=>console.log(err));
 });
 
 module.exports=router;
