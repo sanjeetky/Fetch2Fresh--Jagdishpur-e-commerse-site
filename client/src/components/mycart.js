@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody,Breadcrumb, BreadcrumbItem ,
     CardTitle ,Button} from 'reactstrap';
     import { Link, Redirect } from 'react-router-dom';
-
+    import { Block } from 'styled-loaders-react';
 class Cart extends Component{
     constructor(props){
         super(props);
@@ -12,7 +12,8 @@ class Cart extends Component{
         //this.total=this.total.bind(this);
         this.state={
             fruits:[],
-            tamount:20
+            tamount:20,
+            loading:true
         }
     }
     componentDidMount()
@@ -28,6 +29,7 @@ class Cart extends Component{
         .then((res)=>res.json())
         .then((data)=>
         {
+            this.setState({loading:false})
             this.setState({fruits:data})
         })
         .catch((err)=>console.log(err));
@@ -155,6 +157,11 @@ plus(item)
               else
               {
                    return (
+                    <div>
+                    { this.state.loading ?
+                        <Block color="red" size="60px" duration="1s" />
+                        :
+                   
                        <div className="container">
                            <h1> Items</h1>
                             <hr/>
@@ -210,7 +217,10 @@ plus(item)
                               </div>
                            </div>
                        </div>
+                        }
+                        </div>
                    );
+               
                    }
     }
 }

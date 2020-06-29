@@ -159,8 +159,6 @@ itemsnum()
 })
 }
 
-
-
 //toggling function
   togglelogin()
   {
@@ -349,7 +347,6 @@ logout()
                      <div class="company-logo">
                          <img src="assets/icon/user.png" alt=""/>
                      </div>
-
 
 
 

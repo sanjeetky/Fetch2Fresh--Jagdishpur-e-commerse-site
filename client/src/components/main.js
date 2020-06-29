@@ -14,6 +14,7 @@ import Verify from './verify.js';
 import Activeuser from './activeuser.js';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Deliveryperson from './deliveryperson.js';
+///import { Block } from 'styled-loaders-react';
 
 class Main extends Component {
 
@@ -21,6 +22,7 @@ class Main extends Component {
         super(props);
         this.state={
           fruits:[],
+         
           user:{
             username:" ",
             password:" "
@@ -41,13 +43,14 @@ class Main extends Component {
         this.child.itemsnum(); 
       }
     componentDidMount(){ 
-     this.cartitems();
+     this.cartitems()
       fetch('/shopping/fruits')
       .then(res=>res.json())
       .then(items=>{ this.setState({fruits:items}) }); 
       fetch('/users/session')
       .then(res=>res.json())
       .then(data=>{
+       
       if(data.username==null)
       {
         this.setState(prev=>({
@@ -176,6 +179,8 @@ class Main extends Component {
             }
           }
         return (
+         
+         
             <div>
                  <Header onRef={ref => (this.child = ref)} />
                  <Switch>
@@ -195,6 +200,7 @@ class Main extends Component {
                    </Switch>
                  <Footer/>
             </div>
+   
         );
     }
 }

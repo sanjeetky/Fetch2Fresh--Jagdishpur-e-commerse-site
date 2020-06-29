@@ -1430,7 +1430,7 @@ padding: 20px 10px;
 /*alert box end*/
 /*login box popup*/
 .popup-box-login{
-  max-width: 500px;
+  max-width:  650px;
    height: 50px;
    background-color:  #f44336;
   
@@ -1452,7 +1452,7 @@ padding: 20px 10px;
    outline: none;
    font-size: 0.8rem;
    display:inline-block; 
-   margin: 0px 30px;
+  
    z-index: 100;
 }
 /*login pop-up end*/
