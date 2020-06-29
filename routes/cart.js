@@ -6,6 +6,8 @@ const Cart=require('../models/cart');
 router.route('/')
 .post((req,res)=>{
      var quantity=1;
+
+     //cheking for unique property
          Cart.create({
           username:req.body.username,
           name:req.body.name,

@@ -7,8 +7,7 @@ const cartSchema=new Schema({
     },
     itemid:{
       type:String,
-      required:true,
-      unique:true
+      required:true
     },
     img:{
         type:String,
