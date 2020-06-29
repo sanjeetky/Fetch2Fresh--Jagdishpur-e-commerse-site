@@ -29,8 +29,6 @@ class Cart extends Component{
         .then((data)=>
         {
             this.setState({fruits:data})
-            console.log(data);
-
         })
         .catch((err)=>console.log(err));
        
@@ -75,6 +73,7 @@ plus(item)
             username:this.props.user.username,
             password:this.props.user.password
         }
+        this.props.cartitems();
         fetch('/cart/display',{
             method:'POST',
             headers:{ 'Content-Type':'application/json'},

@@ -25,7 +25,8 @@ class Header extends Component {
         this.loginsubmit=this.loginsubmit.bind(this);
         this.signupsubmit=this.signupsubmit.bind(this);
         this.logout=this.logout.bind(this);
-
+        this.itemsnum=this.itemsnum.bind(this);
+        
        
         this.state = {
           isNavOpen: false,
@@ -34,6 +35,7 @@ class Header extends Component {
           suggestion:[],
           text:"",
           items:[],
+          cartitems:"0",
           user:{
             username:" ",
             password:" "
@@ -43,6 +45,7 @@ class Header extends Component {
 
     componentDidMount()
     {
+       
          fetch('/shopping/fruits')
         .then(res=>res.json())
         .then(data=>data.map((item)=>{
@@ -56,9 +59,7 @@ class Header extends Component {
         {
             document.getElementById("login").style.display="block";
             document.getElementById("logout").style.display="none";
-
-
-          this.setState(prev=>({
+            this.setState(prev=>({
             user:{
               ...prev.user,
               username:" ",
@@ -69,7 +70,7 @@ class Header extends Component {
         else{
             document.getElementById("login").style.display="none";
             document.getElementById("logout").style.display="block";
-           this.setState(prev=>({
+            this.setState(prev=>({
              user:{
                ...prev.user,
                username:data.username,
@@ -80,6 +81,7 @@ class Header extends Component {
     })
 
     this.props.onRef(this);
+    
 }
 componentWillUnmount() {
     this.props.onRef(undefined)
@@ -138,11 +140,26 @@ toggalout(){
 
    
    
+itemsnum()
+{
+    
+    fetch('/users/session')
+    .then(res=>res.json())
+    .then(data=>{
+        var item={username:data.username};
+    fetch('/cart/display',{
+        method:'POST',
+        headers:{ 'Content-Type':'application/json'},
+        body:JSON.stringify(item)
+    })
+    .then((res)=>res.json())
+    .then((data)=>{ 
+        this.setState({cartitems:data.length})})
+    .catch((err)=>console.log(err));
+})
+}
 
-   
 
-
-  
 
 //toggling function
   togglelogin()
@@ -213,11 +230,10 @@ loginsubmit(values)
     .then(res=>res.json())
     .then(data=>{
        console.log(data);
-      // this.forceUpdate();
       window.location.reload(false);
     })
+   
     .catch(err=>console.log(err));
-   // event.preventDefault();//to prevent from refreshing the pages
 }
 
 signupsubmit(values)
@@ -338,8 +354,8 @@ logout()
 
 
                      <div  onClick={this.clickedcart}  style={{cursor:"pointer"}}  class="main-header-cart" >
-                         
                          <img src="assets/icon/cart.png" alt=""/>
+                         <span class='badge badge-warning' id='lblCartCount'>{this.state.cartitems} </span>
                        
                      </div>
 
@@ -425,15 +441,9 @@ logout()
                   
                     <div class="bottom-container-last">
                       <div class="bottom-container-inner">
-                    
-                     <a  onClick={this.clickedcart}  style={{cursor:"pointer"}} class="home-btn-last bottom-icon-1">
-                    
-                     <img src="assets/icon/cart.png" alt=""/>
-                     
-                      <span></span>
-                      
-                     </a>
-                    
+                        <a  onClick={this.clickedcart}  style={{cursor:"pointer"}} class="home-btn-last bottom-icon-1">
+                        <img src="assets/icon/cart.png" alt=""/>
+                        </a>
                       </div>
                     </div>
                   

@@ -26,7 +26,7 @@ addtocart(event)
      },2000)
    }
    else{
-      
+    
        var item={
            username:this.props.user.username,
            name:this.props.item.name,
@@ -44,6 +44,7 @@ addtocart(event)
        .then(data=>{
         console.log("dishdetail")
         alert("submitted sucessfully");
+        this.props.cartitems();
       })
        .catch(err=>console.log(err));
    }

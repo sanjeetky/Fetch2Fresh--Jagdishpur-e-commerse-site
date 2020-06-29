@@ -17,6 +17,7 @@ Login(e)
 }
 addtocart(Item)
 {
+
    if(this.props.user.username==" ")
    {
      document.getElementById('login-popup').style.display="block";
@@ -55,6 +56,7 @@ addtocart(Item)
     .then(data=>{
       console.log("dishdetail")
       alert("submitted sucessfully");
+      this.props.cartitems();
     })
     .catch(err=>{
       console.log(err)

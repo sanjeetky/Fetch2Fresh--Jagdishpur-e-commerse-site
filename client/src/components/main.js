@@ -28,6 +28,7 @@ class Main extends Component {
              flag:"user"
       } 
       this.controllogin=this.controllogin.bind(this);
+      this.cartitems=this.cartitems.bind(this);
     }
 
     controllogin(e)
@@ -35,14 +36,15 @@ class Main extends Component {
       this.child.togglelogin();
     }
     
-
-    componentDidMount(){
-     
+     cartitems()
+      {
+        this.child.itemsnum(); 
+      }
+    componentDidMount(){ 
+     this.cartitems();
       fetch('/shopping/fruits')
       .then(res=>res.json())
-      .then(items=>{
-        this.setState({fruits:items})
-      }); 
+      .then(items=>{ this.setState({fruits:items}) }); 
       fetch('/users/session')
       .then(res=>res.json())
       .then(data=>{
@@ -103,16 +105,16 @@ class Main extends Component {
           }
           const DishWithcat = ({match}) => {
             return(
-                <DishDetail controllogin={()=>this.controllogin()} item={this.state.fruits.filter((dish) => dish.category ==match.params.category)} user={this.state.user} />);
+                <DishDetail cartitems={()=>this.cartitems()} controllogin={()=>this.controllogin()} item={this.state.fruits.filter((dish) => dish.category ==match.params.category)} user={this.state.user} />);
           }
           const DishWithId = ({match}) => {
             return(
-                <Specificdish controllogin={()=>this.controllogin()} item={this.state.fruits.filter((dish) => dish.itemid ==match.params.itemid)[0]} user={this.state.user} />
+                <Specificdish cartitems={()=>this.cartitems()} controllogin={()=>this.controllogin()} item={this.state.fruits.filter((dish) => dish.itemid ==match.params.itemid)[0]} user={this.state.user} />
             );
           }
           const cart = () => {
             return(
-              <Cart user={this.state.user} />
+              <Cart cartitems={()=>this.cartitems()}  user={this.state.user} />
             );
           };
           const shopkeeper = () => {
@@ -150,7 +152,7 @@ class Main extends Component {
               
           const Itemsearch=({match})=>{
             return (
-             < Itemsearchpage controllogin={()=>this.controllogin()} item={this.state.fruits.filter((dish)=>dish.name==match.params.name)} user={this.state.user}/>
+             < Itemsearchpage  cartitems={()=>this.cartitems()} controllogin={()=>this.controllogin()} item={this.state.fruits.filter((dish)=>dish.name==match.params.name)} user={this.state.user}/>
             )
           }
 
@@ -175,7 +177,7 @@ class Main extends Component {
           }
         return (
             <div>
-                 <Header onRef={ref => (this.child = ref)}/>
+                 <Header onRef={ref => (this.child = ref)} />
                  <Switch>
                    <Route exact path='/home' component={HomePage} />
                    <Route exact path='/contactus' component={contactpage} />
