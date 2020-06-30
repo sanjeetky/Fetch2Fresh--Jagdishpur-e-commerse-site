@@ -14,7 +14,7 @@ import Verify from './verify.js';
 import Activeuser from './activeuser.js';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Deliveryperson from './deliveryperson.js';
-///import { Block } from 'styled-loaders-react';
+import { Circular } from 'styled-loaders-react';
 
 class Main extends Component {
 
@@ -22,7 +22,7 @@ class Main extends Component {
         super(props);
         this.state={
           fruits:[],
-         
+          loading:true,
           user:{
             username:" ",
             password:" "
@@ -40,17 +40,23 @@ class Main extends Component {
     
      cartitems()
       {
+        if(this.state.loading==false)
+        {
         this.child.itemsnum(); 
+        }
       }
     componentDidMount(){ 
      this.cartitems()
       fetch('/shopping/fruits')
       .then(res=>res.json())
-      .then(items=>{ this.setState({fruits:items}) }); 
+      .then(items=>{ 
+        this.setState({loading:false})
+        this.setState({fruits:items}) 
+      }); 
       fetch('/users/session')
       .then(res=>res.json())
       .then(data=>{
-       
+        
       if(data.username==null)
       {
         this.setState(prev=>({
@@ -180,8 +186,13 @@ class Main extends Component {
           }
         return (
          
+          <div>
+          { this.state.loading ?
+              <Circular color="red" size="60px"  duration="2s" />
+              :
          
             <div>
+
                  <Header onRef={ref => (this.child = ref)} />
                  <Switch>
                    <Route exact path='/home' component={HomePage} />
@@ -200,7 +211,8 @@ class Main extends Component {
                    </Switch>
                  <Footer/>
             </div>
-   
+    }
+    </div>
         );
     }
 }
