@@ -527,15 +527,15 @@ logout()
                                      />
                             </Row>
                             <Row className="form-group">
-                                    <Button type="submit" color="primary">
+                                    <button type="submit" class="btn btn-primary">
                                    Login
-                                    </Button>
+                                    </button>
                             </Row>
                         </LocalForm>
                       
                       
                          <hr/>
-                         <Button onClick={this.togglesignup} color="success">Create New Account </Button>
+                         <button onClick={this.togglesignup} class="btn btn-success">Create New Account </button>
                     </ModalBody>
                 </Modal>
                 <Modal isOpen={this.state.issignup} toggle={this.togglesignup}>
