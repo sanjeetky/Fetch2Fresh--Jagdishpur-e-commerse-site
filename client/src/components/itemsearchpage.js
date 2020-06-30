@@ -13,6 +13,9 @@ constructor(props){
     }
 
 }
+componentDidMount(){
+  this.props.cartitems();
+}
 Login(e)
 {
   this.props.controllogin();

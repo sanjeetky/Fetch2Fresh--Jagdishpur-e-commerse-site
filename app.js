@@ -13,9 +13,12 @@ var deliveryRouter=require('./routes/delivery');
 var feedbackRouter=require('./routes/feedback');
 var messageRouter=require('./routes/message');
 var app = express();
+var MongoClient = require('mongodb').MongoClient;
 var passport = require('passport');
 var authenticate = require('./authenticate');
-
+const multer = require('multer');
+fs = require('fs-extra')
+ObjectId = require('mongodb').ObjectId;
 const mongoose=require('mongoose');
 const url='mongodb+srv://Sanjeet:Sanjeet@cluster0-5et2v.mongodb.net/test?retryWrites=true&w=majority';
 
@@ -44,6 +47,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+var storage = multer.diskStorage({
+  destination: './client/public/uploads',
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now()+path.extname(file.originalname));
+  }
+})
+var upload = multer({ storage: storage })
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/users', usersRouter);
@@ -53,6 +64,9 @@ app.use('/shopitem',shopitem);
 app.use('/cart',cartRouter);
 app.use('/delivery',deliveryRouter);
 app.use('/feedback',feedbackRouter);
+
+
+
 // catch 404 and forward to error handler
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
@@ -78,3 +92,75 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*app.post('/uploadphoto', upload.single('picture'), (req, res) => {
+  var finalImg={
+    name:"mango",
+    src:req.file.path
+  }
+  MongoClient.connect(url, (err, client) => {
+    if (err) return console.log(err)
+    db = client.db('test') 
+   db.collection('mycollection').insertOne(finalImg, (err, result) => {
+  	console.log(result)
+
+    if (err) return console.log(err)
+
+    console.log('saved to database')
+  })
+  res.send("done")
+});
+console.log(req.file)
+
+})
+
+
+
+app.get('/photos', (req, res) => {
+  MongoClient.connect(url, (err, client) => {
+    if (err) return console.log(err)
+    db = client.db('test') 
+  db.collection('mycollection').find().toArray((err, result) => {
+     if (err) return console.log(err)
+     res.contentType('image/jpeg');
+   res.send(result);
+    })
+  });
+})*/
+

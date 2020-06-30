@@ -9,7 +9,9 @@ constructor(props){
     this.addtocart=this.addtocart.bind(this);
     this.Login=this.Login.bind(this);
 }
-
+componentDidMount(){
+  this.props.cartitems();
+}
 Login(e)
 {
   this.props.controllogin();

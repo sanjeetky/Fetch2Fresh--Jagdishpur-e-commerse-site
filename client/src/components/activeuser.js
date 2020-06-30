@@ -14,6 +14,7 @@ constructor(props){
 }
 componentDidMount()
     {
+        this.props.cartitems();
         let item={
             username:this.props.user.username,
             status:'Inprogress'

@@ -15,10 +15,12 @@ class Admin extends Component {
             activeorders:[],
             pastorders:[],
             cancelledorders:[],
+          
            
         };
         this.handleSubmit = this.handleSubmit.bind(this);  
         this.Messages=this.Messages.bind(this);
+      
        // this.deleteshopitem=this.deleteshopitem.bind(this);
     }
 
@@ -164,9 +166,6 @@ cancelit(item)
 }
 
     render() {
-      
-
-       
         const activeorders=this.state.activeorders.map((item)=>{
             return(
                 <div className="row" style={{border:"2px solid black"}}>

@@ -167,7 +167,7 @@ class Main extends Component {
 
           const activeuser=()=>{
             return (
-              <Activeuser user={ this.state.user}/>
+              <Activeuser cartitems={()=>this.cartitems()}  user={ this.state.user}/>
             )
             
           }

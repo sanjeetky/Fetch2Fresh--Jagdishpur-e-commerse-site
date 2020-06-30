@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { Breadcrumb, BreadcrumbItem,
     Button, Row, Col, Label } from 'reactstrap';
+    import { withRouter } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -23,7 +24,9 @@ class Billing extends Component {
         document.getElementById('alert-box').style.display="block"
         setTimeout(() => { 
             document.querySelector('.alert-box').style.display="none" 
+            this.props.history.push("/home") ;
         }, 1500);
+       
     }
 
     handleSubmit(values) {
@@ -61,7 +64,7 @@ class Billing extends Component {
         })
         .then(res=>res.json())
         .then(data=>{
-           // alert("order placed:will be delivered as soon as possible")
+          // alert("order placed:will be delivered as soon as possible")
             this.alertkaro();
         })
         .catch(err=>console.log(err));
@@ -71,10 +74,12 @@ class Billing extends Component {
             body:JSON.stringify(obj)
         })
         .then(res=>res.json())
-        .then(data=>console.log(data))
+        .then(data=>{
+            console.log(data)
+        })
         .catch(err=>console.log(err));
-       // alert("submitted successfully");
-       window.location.reload(false);
+        
+      // window.location.reload(false);
         })
 
         .catch(err=>console.log(err));
@@ -251,4 +256,4 @@ class Billing extends Component {
    
 
 
-export default Billing;
+export default withRouter(Billing);

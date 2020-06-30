@@ -8,11 +8,15 @@ constructor(props){
     super(props);
     this.addtocart=this.addtocart.bind(this);
     this.Login=this.Login.bind(this);
+    
 }
 Login(e)
 {
   this.props.controllogin();
   e.preventDefault();
+}
+componentDidMount(){
+  this.props.cartitems();
 }
 addtocart(event)
 {
@@ -44,6 +48,7 @@ addtocart(event)
        .then(data=>{
         console.log("dishdetail")
         alert("submitted sucessfully");
+        this.props.cartitems();
       })
        .catch(err=>console.log(err));
    }
