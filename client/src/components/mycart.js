@@ -149,10 +149,9 @@ plus(item)
               if(this.state.fruits.length==0)
               {
                   return <div><Link   to={'/home'}>
-                  <Button  style={{margin:"3px"}} color={"success"}  > Continue Shopping   </Button>
+                  <Button  style={{margin:"3px"}} color={"success"}  > Shop   </Button>
                   </Link></div>
-
-                 
+    
               }
               else
               {
@@ -212,7 +211,7 @@ plus(item)
                               </div>
                               <div className="col-4">
                                <Link   to={'/home'}>
-                               <Button className="col-12"  color={"success"}  > Continue Shopping   </Button>
+                               <Button className="col-12"  color={"success"}  > Shop  </Button>
                                </Link>
                               </div>
                            </div>
