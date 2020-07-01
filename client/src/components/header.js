@@ -346,13 +346,13 @@ logout()
 
                   
                      <div class="company-logo">
-                         <img src="assets/icon/user.png" alt=""/>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"/></svg>
                      </div>
 
 
 
                      <div  onClick={this.clickedcart}  style={{cursor:"pointer"}}  class="main-header-cart" >
-                         <img src="assets/icon/cart.png" alt=""/>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>								
                          <span class='badge badge-warning' id='lblCartCount'>{this.state.cartitems} </span>
                        
                      </div>
@@ -368,12 +368,6 @@ logout()
                                      
 
                  </div>  
-             
-            
-            
-
-
-          
                  <div class="top-header-container-2">
                  <div class="flipkart-navbar-search smallsearch col-sm-8 col-xs-12">
                 <div class="row">
@@ -414,7 +408,7 @@ logout()
                     
                      <a href="/home" class="home-btn-last bottom-icon-1">
                        
-                     <img src="assets/icon/home.png" alt=""/>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
                       <span></span>
                 
                      </a>
@@ -429,7 +423,7 @@ logout()
                     
                      <a href="#" class="home-btn-last bottom-icon-1">
                        
-                     <img src="assets/icon/search.png" alt=""/>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>								
                       <span></span>
                      
                      </a>
@@ -441,7 +435,7 @@ logout()
                     <div class="bottom-container-last">
                       <div class="bottom-container-inner">
                         <a  onClick={this.clickedcart}  style={{cursor:"pointer"}} class="home-btn-last bottom-icon-1">
-                        <img src="assets/icon/cart.png" alt=""/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>								
                         </a>
                       </div>
                     </div>
@@ -460,7 +454,7 @@ logout()
 
                      <a onClick={this.clickeduser}  style={{cursor:"pointer"}} class="home-btn-last bottom-icon-1">
                      
-                     <img src="assets/icon/user.png" alt=""/>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M9 8c1.66 0 2.99-1.34 2.99-3S10.66 2 9 2C7.34 2 6 3.34 6 5s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V16h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
                       <span></span>
                      
                      </a>
