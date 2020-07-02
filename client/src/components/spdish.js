@@ -39,18 +39,38 @@ addtocart(event)
            itemid:this.props.item.itemid,
            category:this.props.item.category
        }
-       fetch('/cart',{
-           method:"POST",
-           headers:{"Content-Type":"application/json"},
-           body:JSON.stringify(item)
-       })
-       .then(res=>res.json())
-       .then(data=>{
-        console.log("dishdetail")
-        alert("submitted sucessfully");
-        this.props.cartitems();
-      })
-       .catch(err=>console.log(err));
+       
+      
+       fetch('/cart/search',{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({username:this.props.user.username,itemid:this.props.item.itemid})
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.length==0)
+     {
+      fetch('/cart',{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(item)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log("dishdetail")
+      alert("submitted sucessfully");
+      this.props.cartitems();
+    })
+    .catch(err=>{
+      console.log(err)
+      console.log("error")
+     });
+     }
+      else
+      alert("already added");
+    })
+    .catch(err=>{  console.log("error")})
+   
    }
    event.preventDefault();
 }
