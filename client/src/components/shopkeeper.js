@@ -16,7 +16,6 @@ class Shopkeeper extends Component {
         this.updateactiveitem=this.updateactiveitem.bind(this);
 
         this.state={
-            newitems:[],
             activeitems:[]
         }
     }
@@ -27,15 +26,6 @@ class Shopkeeper extends Component {
       var vser={
           username:this.props.user.username
       }
-        fetch('/shopitem/display',{
-          method:"POST",
-          headers:{"Content-Type":"application/json"},
-          body:JSON.stringify(vser)
-        })
-        .then(res=>res.json())
-        .then(data=>{this.setState({newitems:data})})
-        .catch(err=>console.log(err));
-
         fetch('/shopping/activeitems',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
@@ -58,27 +48,33 @@ class Shopkeeper extends Component {
             cost: values.amount,
             weight: values.weight,
             quantity:values.quantity,
-            shop:this.props.user.username
+            shop:this.props.user.username,
+             description:values.description,
+            img: values.image,
+            itemid: values.itemid,
+            category: values.category,
           }
           //console.log(obj);
-        fetch('/shopitem',{
+          fetch('/shopping/dalo',{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(obj)
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
-            alert("Thank you for your item!!!")
             window.location.reload(false);
+            alert("Added successfully")
+            console.log(data);
         })
-        .catch(err=>console.log(err));
+        .catch(err=>{
+            console.log(err);
+        });
     }
     };
      
 deleteshopitem(item)
 {
-     fetch('/shopitem',{
+     fetch('/shopping',{
          method:"DELETE",
          headers:{"Content-Type":"application/json"},
          body:JSON.stringify(item)
@@ -97,7 +93,7 @@ removeactiveitem(item)
     fetch('/shopping/fruits',{
         method:"DELETE",
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify(item)
+        body:JSON.stringify({id:item._id})
     })
     .then(res=>res.json())
     .then(data=>{
@@ -134,26 +130,7 @@ updateactiveitem(values,item)
 
 
     render() {
-        var shopitem=this.state.newitems.map((item)=>{
-            return(
-                <div className="bill">
-              
-                    <div className="col-12">
-                     <p>Name:{item.name}</p>
-                     <p>Brand:{item.brand}</p>
-                     <p>Cost:{item.cost}</p>
-                     <p>Weight: {item.weight}</p>
-                     <p>Quantity: {item.quantity}</p>
-                     <p>Shop:{item.shop}</p>
-                     <h3>Status:{item.status}</h3>
-                     <h4>{item.message}</h4>
-                     </div>
-                     <div className="col-12">
-                         <Button className="btn btn-danger" onClick={()=>this.deleteshopitem(item)}>Remove</Button>
-                     </div>
-                </div>
-            )
-        })
+       
         //activeitems
         const Activeitem= this.state.activeitems.map((item)=>{
             return(
@@ -333,8 +310,87 @@ updateactiveitem(values,item)
                                      />
                                 </Col>
                             </Row>
-                            
-                           
+                            <Row className="form-group">
+                                <Label htmlFor="itemid" md={2}> Itemid</Label>
+                                <Col md={10}>
+                                    <Control.text model=".itemid" id="itemid" name="itemid"
+                                        placeholder=" Itemid"
+                                        className="form-control"
+                                        validators={{
+                                            required
+                                        }}
+                                         />
+                                         <Errors
+                                        className="text-danger"
+                                        model=".itemid"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required',
+                                        }}
+                                     />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="brand" md={2}>Description</Label>
+                                <Col md={10}>
+                                    <Control.text model=".description" id="description" name="description"
+                                        placeholder="description"
+                                        className="form-control"
+                                        validators={{
+                                            required
+                                        }}
+                                         />
+                                         <Errors
+                                        className="text-danger"
+                                        model=".description"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required',
+                                        }}
+                                     />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="category" md={2}>Category</Label>
+                                <Col md={10}>
+                                    <Control.text model=".category" id="category" name="category"
+                                        placeholder="Category"
+                                        className="form-control"
+                                        validators={{
+                                            required
+                                        }}
+                                         />
+                                         <Errors
+                                        className="text-danger"
+                                        model=".category"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required',
+                                        }}
+                                     />
+                                </Col>
+                            </Row>
+
+                            <Row className="form-group">
+                                <Label htmlFor="weight" md={2}>Image</Label>
+                                <Col md={10}>
+                                    <Control.text model=".image" id="image" name="image"
+                                        placeholder="image"
+                                        className="form-control"
+                                        validators={{
+                                            required
+                                        }}
+                                         />
+                                         <Errors
+                                        className="text-danger"
+                                        model=".image"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required',
+                                        }}
+                                     />
+                                </Col>
+                            </Row>
                             <Row className="form-group">
                                 <Col md={{size:10, offset: 2}}>
                                     <Button type="submit" color="primary">
@@ -346,21 +402,10 @@ updateactiveitem(values,item)
                     </div>
                     </div>
                       <div>
-                         <h2>Your Items</h2>
-                         <hr/>
-                         <div className="row">
-                           <div className="col-mid-4">
-                             {shopitem}
-                             </div>
-                         </div>
-                      </div>
-                      <div>
                          <h2>Your Active Items</h2>
                          <hr/>
                          <div className="col-12">
-                          
                              {Activeitem}
-                            
                          </div>
                       </div>
                </div>

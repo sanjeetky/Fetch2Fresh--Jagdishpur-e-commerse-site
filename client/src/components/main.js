@@ -127,7 +127,7 @@ class Main extends Component {
             );
           };
           const shopkeeper = () => {
-            if(this.state.flag=='user')
+            if(this.state.flag=='user'&& this.state.user.username!=' ')
             {
                 return(
                  <Shopkeeper user={this.state.user} />
@@ -141,7 +141,7 @@ class Main extends Component {
             }
           };
           const admin = () => {
-            if(this.state.flag=='user')
+            if(this.state.flag=='admin')
             {
             return(
              <Admin  user={this.state.user}/>

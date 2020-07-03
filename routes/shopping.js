@@ -42,7 +42,7 @@ router.route('/fruits')
 })
 
 .delete((req,res)=>{
-   Item.deleteOne(req.body.item)
+   Item.deleteOne({_id:ObjectID(req.body.id)})
    .then((item)=>{
     res.statusCode=200;
     res.setHeader('Content-Type','application/json');
