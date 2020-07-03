@@ -526,7 +526,7 @@ z-index: 999;
 .slider-header{
   width: 200px;
   height: 100vh;
-  background-color: #d1c4e9;
+  background-color: white;
  z-index: 9999;
  position: absolute;
  top: 50px;
@@ -580,14 +580,6 @@ z-index: 999;
 }
 
 
-.user-profile-img-details > img {
-  width: 30px;
-  height: 30px;
-  position: relative;
-  left: 50%;
- 
-     
-}
 
 
 .user-profile-img-details > p{

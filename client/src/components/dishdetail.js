@@ -95,7 +95,7 @@ render(){
          
          <h4 class="item-name-1">{item.name}</h4>
          <div class="item-price">
-        <h4><span id="price-value">{item.cost}</span></h4>
+        <h4>&#8377;<span id="price-value">{item.cost}</span></h4>
        </div>
        <button class="add-to-cart-btn" onClick={()=>this.addtocart(item)}><i class="fa fa-cart-plus"></i>add</button>
 
