@@ -141,7 +141,7 @@ class Main extends Component {
             }
           };
           const admin = () => {
-            if(this.state.flag=='admin')
+            if(this.state.flag=='user')
             {
             return(
              <Admin  user={this.state.user}/>
@@ -172,7 +172,7 @@ class Main extends Component {
             
           }
           const deliveryperson=()=>{
-            if(this.state.flag=='deliveryperson')
+            if(this.state.flag=='user')
             {
             return (
               <Deliveryperson user={ this.state.user}/>

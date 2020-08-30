@@ -43,19 +43,23 @@ class Verify extends Component{
     {
       var number=this.state.number;
       var val = Math.floor(1000 + Math.random() * 9000);
+      
       this.setState({text:val});
       var obj={
       number:number,
       text:val
     }
-    console.log("hello")
+   
     fetch('/message',{
       method:"POST",
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(obj)
     })
     .then(res=>res.json())
-    .then(data=>console.log(data))
+    .then(data=>
+      {
+        alert(val);
+      })
     .catch(err=>console.log(err));
     this.counter(60);
     e.preventDefault();
@@ -74,6 +78,7 @@ class Verify extends Component{
     number:number,
     text:val
   }
+  alert(val);
   document.getElementById('otp-mob-number').setAttribute('readonly','');
   document.getElementById('otp-mob-number').style.color="grey";
   document.getElementById('otp-sent-number').style.display="block";
@@ -105,6 +110,7 @@ class Verify extends Component{
      alert("wrong password");
      }
   }
+  
     render()
     {
         return (
